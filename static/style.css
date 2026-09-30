@@ -1,0 +1,292 @@
+:root {
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --primary: #5b5be7;
+    --primary-dark: #4545c8;
+    --text: #20243a;
+    --muted: #70758a;
+    --border: #e4e7f0;
+    --success: #19a974;
+    --shadow: 0 18px 50px rgba(34, 40, 80, 0.12);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--text);
+    background: linear-gradient(135deg, #eef0ff 0%, var(--bg) 50%, #f8f9fc 100%);
+}
+
+button,
+label { font: inherit; }
+
+button:focus-visible,
+label:focus-visible,
+.tile:focus-visible {
+    outline: 3px solid rgba(91, 91, 231, 0.35);
+    outline-offset: 3px;
+}
+
+.container {
+    width: min(760px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 42px 0 60px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.1;
+}
+
+.subtitle {
+    margin: 12px 0 28px;
+    color: var(--muted);
+    font-size: 1rem;
+}
+
+.photo-section,
+.game-info,
+.puzzle,
+.buttons,
+.instructions {
+    width: 100%;
+}
+
+.photo-section {
+    margin-bottom: 24px;
+    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 8px 28px rgba(34, 40, 80, 0.06);
+}
+
+.photo-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 12px 22px;
+    border-radius: 12px;
+    color: #fff;
+    background: var(--primary);
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.photo-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(91, 91, 231, .25);
+}
+
+#photoName {
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: .9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.game-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.info-box {
+    padding: 15px 10px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(34, 40, 80, .05);
+}
+
+.info-box span,
+.info-box strong {
+    display: block;
+}
+
+.info-box span {
+    margin-bottom: 5px;
+    color: var(--muted);
+    font-size: .82rem;
+}
+
+.info-box strong {
+    font-size: 1.25rem;
+}
+
+.puzzle {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    width: min(620px, 100%);
+    aspect-ratio: 1;
+    margin: 0 auto 20px;
+    padding: 5px;
+    overflow: hidden;
+    background: #15182a;
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+.tile {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    border: 0;
+    border-radius: 8px;
+    background-color: #dfe2ed;
+    background-repeat: no-repeat;
+    background-size: 300% 300%;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-drag: element;
+    transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+}
+
+.tile:hover { filter: brightness(1.04); }
+.tile:active { cursor: grabbing; }
+.tile.dragging { opacity: .45; transform: scale(.96); }
+.tile.selected {
+    z-index: 2;
+    box-shadow: inset 0 0 0 4px #fff, 0 0 0 4px var(--primary);
+    transform: scale(.97);
+}
+
+.empty-puzzle {
+    grid-column: 1 / -1;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 8px;
+    min-height: 100%;
+    padding: 30px;
+    color: #777d91;
+    background: #fff;
+    border-radius: 12px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.buttons button,
+#playAgainBtn {
+    border: 0;
+    border-radius: 12px;
+    padding: 12px 18px;
+    color: #fff;
+    background: var(--primary);
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.buttons button:hover,
+#playAgainBtn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(91, 91, 231, .22);
+}
+
+.instructions {
+    padding: 20px 22px;
+    text-align: left;
+    background: rgba(255, 255, 255, .85);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+}
+
+.instructions h3 { margin: 0 0 10px; }
+.instructions p {
+    margin: 8px 0 0;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.win-message {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(18, 21, 39, .68);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .2s ease, visibility .2s ease;
+}
+
+.win-message.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.win-card {
+    width: min(430px, 100%);
+    padding: 30px 26px;
+    text-align: center;
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, .25);
+    transform: translateY(12px) scale(.98);
+    transition: transform .25s ease;
+}
+
+.win-message.show .win-card { transform: translateY(0) scale(1); }
+
+.trophy {
+    font-size: 4rem;
+    line-height: 1;
+    margin-bottom: 12px;
+}
+
+.win-card h2 { margin: 0; font-size: 1.8rem; }
+.win-card > p { color: var(--muted); }
+
+.result {
+    margin: 20px 0;
+    padding: 14px 18px;
+    text-align: left;
+    background: #f6f7fc;
+    border-radius: 14px;
+}
+
+.result p { display: flex; justify-content: space-between; margin: 8px 0; }
+.result strong { color: var(--primary); }
+
+@media (max-width: 560px) {
+    .container { width: min(100% - 20px, 760px); padding-top: 26px; }
+    .game-info { gap: 7px; }
+    .info-box { padding: 12px 6px; }
+    .info-box span { font-size: .72rem; }
+    .info-box strong { font-size: 1rem; }
+    .puzzle { border-radius: 13px; gap: 3px; padding: 3px; }
+    .tile { border-radius: 5px; }
+    .instructions { padding: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+}
